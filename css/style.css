@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code|Raleway&display=swap');
+
+* {
+  margin: 0;
+  outline: 0;
+  border: 0;
+  box-sizing: border-box;
+  height: auto;  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #fff;
+  font-family: 'Raleway', sans-serif;  
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+p {
+  color: #999;
+}
+
+header {
+  border-radius: 5px 5px 0px 0px;
+  border: 2px solid #2d3436;
+  border-bottom: 0;
+  color: #d63031;  
+  background-color: #fdcb6e;
+  user-select: none;  
+  padding: 15px 10px;  
+}
+
+.form header {
+  text-align: center;   
+}
+
+.resul header {
+  text-align: left;    
+}
+
+article {
+  font-family: 'Fira Code', monospace;
+  border: 2px solid #636e72;
+  padding: 20px 20px;
+  border-top: 0;
+  border-radius: 0px 0px 5px 5px;
+  user-select: text;  
+  background-color: #ffeaa7;
+}
+
+article p{
+  color: #636e72;
+}
+
+span{  
+  font-size: 0.8rem;
+  border-radius: 5%;  
+  padding: 5px 7px;
+}
+
+/**
+ * Class
+ */
+
+.container {  
+  width: 70%;
+  margin: 50px auto;
+  border-radius: 5px;
+  border: 1px solid rgba(9,132,227, 0.1);
+  padding: 25px;
+  background-color: #74b9ff;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.form {
+  display: flex;  
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.col {  
+  display: flex;  
+  align-items: center;  
+  width: 100%;      
+}
+
+/** PIS */
+.label-pis{
+  width: 50%; 
+  text-align: center;
+  font-weight: bolder;    
+  font-size: 18px;
+  font-family: 'Fira Code', monospace;
+  color: #e17055;
+  user-select: none; 
+}
+
+.input_pis{
+  height: 50px;  
+  width: 50%;   
+  border: 2px solid #fdcb6e;
+  border-radius: 3px;  
+  background-color: #fff;  
+  font-weight: bolder;    
+  font-size: 18px;
+  font-family: 'Fira Code', monospace;
+  color: #d63031;
+  text-align: center;
+}
+
+.input_pis::-webkit-input-placeholder{  
+  text-align: center;
+  font-size: 18px;
+  color: #636e72;
+}
+
+/** File */
+.col input[type="file"]{  
+  display: none;
+}
+
+.col input[type="file"] + label{  
+  width: 100%;  
+  margin: 20px auto;
+  padding: 25px 0px;
+  border: 2px dashed #fdcb6e;
+  border-radius: 5px;
+  color: #636e72;
+  font-size: 18px;  
+  text-align: center;  
+  font-weight: bolder;  
+  cursor: pointer;
+  background-color: #fff;
+  font-family: 'Fira Code', monospace;
+  user-select: none; 
+}
+
+/** Result */
+.resul-pis-title{
+  background: #a29bfe;   
+  color: #333;
+  border-left: 5px solid #6c5ce7; 
+  border-radius: 5px;
+  padding: 10px 17px;
+  margin-top: 10px;
+  font-weight: bolder;
+}
+
+.span-week {
+  background-color: #fdcb6e;
+  color: #333;
+
+}
+
+.span-nsr{
+  color: #333;
+  background-color: #fab1a0;
+}
+
