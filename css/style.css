@@ -166,3 +166,25 @@ span{
   background-color: #fab1a0;
 }
 
+/* Link dos PIS */
+
+.div-link-pis{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.link-pis{
+  padding: 5px 5px;
+  margin: 5px 5px;
+  background-color: #6c5ce7;   
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.link-pis:hover{
+  background-color: #a29bfe;
+  color: #333;
+  font-weight: bolder;
+}
