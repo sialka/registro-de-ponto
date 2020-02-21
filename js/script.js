@@ -66,24 +66,12 @@ function validaPIS(pis) {
 }
 
 // Coleta de Dados
-async function handleFileSelect(evt) {
-	// 1. Loading file 
+async function handleFileSelect(evt) {	
 	let files = document.querySelector('input[type=file]').files[0];	
 	let search = document.querySelector('input[type=text]').value.trim();	
 
-	// Validação do PIS
+	// 1. Validação do PIS
 	if(search) {
-	
-		// Validação - É numero
-		/*
-		if (isNaN(search)){
-			document.querySelector('.resul p').innerHTML = "<strong> "+ search + " </strong> não é um PIS válido !!!";
-			document.querySelector('input[type=text]').value = "";		
-			document.querySelector('#file').value = ""	
-			return;
-		}	
-		*/
-
 		if(!validaPIS(search)){
 			alert('Favor informar um PIS válido !!!');
 			document.querySelector('#file').value = "";	
@@ -91,6 +79,7 @@ async function handleFileSelect(evt) {
 		}		
 	}
 
+	// 2. Validação do Arquivo
 	if (files.type !== "text/plain") {		
 		alert("Arquivo de dados inválido !!!")
 		document.querySelector('#file').value = "";
@@ -134,8 +123,9 @@ async function handleFileSelect(evt) {
 	let nsr = "";
 	const show_week = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sabado'];
 
-	// Filtrando os PIS
+	// Coletando os PIS
 	if (!search) {
+
 		arr_file.forEach(i => {
 			
 			// somente linhas com registro			
@@ -153,50 +143,59 @@ async function handleFileSelect(evt) {
 		pis.push(search);
 	}		
 
-	// Add data
+	if(pis.length > 1) {
+		arr_records.push('<p class="resul-pis-title">Link Rápido:</p>')
+		arr_records.push('<div class="div-link-pis">')
+		pis.forEach(pis => {		
+			arr_records.push(`<a href="#${pis}" class="link-pis">${pis}</a>`)
+		})
+		arr_records.push('</div>')
+	}
+
+
+	// Coletando Pis e Registros
 	pis.forEach(pis => {		
 		pis_title = true;	
 
 		arr_file.forEach(i => {		
-		// somente linhas com registro			
-		if (i.length == 39) {			
-			// filtrando pelo pis					
-			if (pis_title) {
-				pis_title = false;
-				arr_records.push("<p class='resul-pis-title'> PIS: <strong>" + pis + "</strong></p>");
-			}					
+			// somente linhas com registro			
+			if (i.length == 39) {			
+				// filtrando pelo pis					
+				if (pis_title) {
+					pis_title = false;
+					arr_records.push("<p class='resul-pis-title' id='"+pis+"'> PIS: <strong>" + pis + "</strong></p>");
+				}					
 
-			if (i.substr(23,11) == pis) {				
+				if (i.substr(23,11) == pis) {				
 
-				nsr = i.substr(1,9) + "<br>";								
-				
-				if (i.substr(10,2) != change_day || i.substr(23,11) != change_pis){
-					change_day = i.substr(10,2);
-					change_pis = i.substr(23,11);
-					arr_records.push("<br>");					
-
-					// dia da semana
-					week = new Date(i.substr(14,4), i.substr(12,2), i.substr(10,2));
-					index = week.getDay();
-
-					data = "<strong>"+
-						i.substr(10,2)+ "/" + 
-						i.substr(12,2)+ "/" +
-						i.substr(14,4)+ "</strong> <span class='span-week'>" + show_week[index-1] +"</span><br><br>" + 
-						i.substr(18,2)+ ":" + 
-						i.substr(20,2)+ " <span class='span-nsr'>NSR "+nsr+"</span><br>";						
+					nsr = i.substr(1,9) + "<br>";								
 					
-				}else{
-					data =
-						i.substr(18,2)+ ":" + 
-						i.substr(20,2)+ " <span class='span-nsr'>NSR "+nsr+"</span><br>";						
-				}													
-				
-				arr_records.push(data);
+					if (i.substr(10,2) != change_day || i.substr(23,11) != change_pis){
+						change_day = i.substr(10,2);
+						change_pis = i.substr(23,11);
+						arr_records.push("<br>");					
+
+						// dia da semana
+						week = new Date(i.substr(14,4), i.substr(12,2), i.substr(10,2));
+						index = week.getDay();
+
+						data = "<strong>"+
+							i.substr(10,2)+ "/" + 
+							i.substr(12,2)+ "/" +
+							i.substr(14,4)+ "</strong> <span class='span-week'>" + show_week[index-1] +"</span><br><br>" + 
+							i.substr(18,2)+ ":" + 
+							i.substr(20,2)+ " <span class='span-nsr'>NSR "+nsr+"</span><br>";						
+						
+					}else{
+						data =
+							i.substr(18,2)+ ":" + 
+							i.substr(20,2)+ " <span class='span-nsr'>NSR "+nsr+"</span><br>";						
+					}													
+					
+					arr_records.push(data);
+				}
 			}
-		}
-	});		
-	
+		});			
 	})	
 
 	// No record
