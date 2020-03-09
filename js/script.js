@@ -176,13 +176,14 @@ async function handleFileSelect(evt) {
 						arr_records.push("<br>");					
 
 						// dia da semana
-						week = new Date(i.substr(14,4), i.substr(12,2), i.substr(10,2));
+						month = parseInt(i.substr(12,2))-1
+						week = new Date(i.substr(14,4), month, i.substr(10,2));						
 						index = week.getDay();
 
 						data = "<strong>"+
 							i.substr(10,2)+ "/" + 
-							i.substr(12,2)+ "/" +
-							i.substr(14,4)+ "</strong> <span class='span-week'>" + show_week[index-1] +"</span><br><br>" + 
+							i.substr(12,2)+ "/" +							
+							i.substr(14,4)+ "</strong> <span class='span-week'>" + show_week[index] +"</span><br><br>" + 							
 							i.substr(18,2)+ ":" + 
 							i.substr(20,2)+ " <span class='span-nsr'>NSR "+nsr+"</span><br>";						
 						
